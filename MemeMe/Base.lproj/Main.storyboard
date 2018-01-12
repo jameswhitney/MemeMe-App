@@ -26,10 +26,14 @@
                                 <items>
                                     <barButtonItem title="Album" width="230" id="jJC-BH-w2o">
                                         <connections>
-                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="lib-5d-jDe"/>
+                                            <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="qzt-nW-6S1"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="camera" id="pYA-FZ-a9e"/>
+                                    <barButtonItem systemItem="camera" id="pYA-FZ-a9e">
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="jMt-xg-bTp"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -46,6 +50,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="albumButton" destination="jJC-BH-w2o" id="pGh-kP-F2Z"/>
+                        <outlet property="cameraButton" destination="pYA-FZ-a9e" id="W6W-dT-UUI"/>
                         <outlet property="originalImage" destination="hev-ez-5rT" id="iF0-ge-mbh"/>
                     </connections>
                 </viewController>
