@@ -31,7 +31,7 @@
                                     </barButtonItem>
                                     <barButtonItem systemItem="camera" id="pYA-FZ-a9e">
                                         <connections>
-                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="jMt-xg-bTp"/>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="3C5-4C-6n3"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
