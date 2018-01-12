@@ -23,6 +23,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+    }
+    
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
         
         let imagePicker = UIImagePickerController()
@@ -32,6 +39,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
+        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
@@ -40,6 +48,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
         dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             originalImage.image = image
