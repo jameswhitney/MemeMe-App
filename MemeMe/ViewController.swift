@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate ,UIImagePickerControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var originalImage: UIImageView!
     
@@ -27,6 +27,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate ,UIImageP
         originalImage.delegate = self
         originalImage.sourceType = .photoLibrary
         present(originalImage, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        dismiss(animated: true, completion: nil)
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            originalImage.image = image
+        }
     }
     
 
