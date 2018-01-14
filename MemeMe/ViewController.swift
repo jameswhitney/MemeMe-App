@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - ViewController: UIController, UINavigationControllerDelegate, UIImagePickerControllerDelegate
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
 
     // MARK: Outlets
     
@@ -35,7 +35,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        //
+        self.topText.delegate = self
+        self.bottomText.delegate = self
+        
+        topText.defaultTextAttributes = memeTextAttributes
+        self.topText.textAlignment = .center
+        topText.text = "TOP"
+        
+        bottomText.defaultTextAttributes = memeTextAttributes
+        self.bottomText.textAlignment = .center
+        bottomText.text = "BOTTOM"
+        
+        view.backgroundColor = UIColor.black
     }
 
     override func didReceiveMemoryWarning() {
