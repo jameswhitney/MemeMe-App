@@ -21,6 +21,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
     
+    // Class property for setting text attributes.
+    let memeTextAttributes: [String: Any] = [
+        
+        NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
+        NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
+        NSAttributedStringKey.backgroundColor.rawValue: UIColor.clear,
+        NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSAttributedStringKey.strokeWidth.rawValue : NSNumber(value: -3.0)
+    ]
+    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
