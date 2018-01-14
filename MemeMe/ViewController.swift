@@ -36,19 +36,35 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //
+        // Assign textField outlets to utilize UITextFieldDelegate.
         self.topText.delegate = self
         self.bottomText.delegate = self
         
+        // Create default text for topText using memeTextAttributes. Center text and set text to TOP.
         topText.defaultTextAttributes = memeTextAttributes
         self.topText.textAlignment = .center
         topText.text = "TOP"
         
+        // Create default text for bottomText using memeTextAttributes. Center text and set text to BOTTOM.
         bottomText.defaultTextAttributes = memeTextAttributes
         self.bottomText.textAlignment = .center
         bottomText.text = "BOTTOM"
         
+        // Change view background color to black.
         view.backgroundColor = UIColor.black
+    }
+    
+    // Clear default text to empty string when text editing begins
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text == "TOP" || textField.text == "BOTTOM" {
+            textField.text = ""
+        }
+    }
+    
+    // Once return is selected, exit text field editing.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
     override func didReceiveMemoryWarning() {
