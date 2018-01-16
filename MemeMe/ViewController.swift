@@ -99,6 +99,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         present(imagePicker, animated: true, completion: nil)
     }
     
+    // Function shifts view up or leaves it in default position.
+    func keyboardWillShow(_ notification: Notification) -> Void {
+        
+        // If bottomText is being edited shift view up to move so keyboard does not cover the text field.
+        if bottomText.isFirstResponder {
+            self.view.frame.origin.y = getKeyboardHeight(notification) * (-1)
+        }
+        // Leave view in original position if topText is being edited.
+        else if topText.isFirstResponder {
+            self.view.frame.origin.y = 0
+        }
+    }
+    // Function gets heighth of keyboard and returns value to keyboardWillShow.
+    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
+        
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.cgRectValue.height
+    }
     // MARK: Utility
     
     // Function takes user selection from a dictionary of images and displays selected image as originalImage.
