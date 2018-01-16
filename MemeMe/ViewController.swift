@@ -79,6 +79,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        super.viewWillDisappear(animated)
+        
+    }
+    
     // MARK: Actions
     
     // When albumButton is selected present user with photo album picker.
@@ -100,7 +106,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     // Function shifts view up or leaves it in default position.
-    func keyboardWillShow(_ notification: Notification) -> Void {
+    @objc func keyboardWillShow(_ notification: Notification) -> Void {
         
         // If bottomText is being edited shift view up to move so keyboard does not cover the text field.
         if bottomText.isFirstResponder {
@@ -111,12 +117,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             self.view.frame.origin.y = 0
         }
     }
+    
     // Function gets heighth of keyboard and returns value to keyboardWillShow.
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.height
+    }
+    
+    // Notifies view that keyboard will appear.
+    func subscribeToKeyboardNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+    }
+    
+    // Notifies view that keyboard will be dismissed.
+    func unsubscribeFromKeyboardNotifications() {
+        
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
     }
     // MARK: Utility
     
