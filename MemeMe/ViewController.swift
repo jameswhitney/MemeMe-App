@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-// MARK: - ViewController: UIController, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+// MARK: - ViewController: UIController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
 
@@ -65,11 +65,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // Check if camera source is available. If not disable camera button.
@@ -145,6 +140,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
+    
     // MARK: Utility
     
     // Function takes user selection from a dictionary of images and displays selected image as originalImage.
