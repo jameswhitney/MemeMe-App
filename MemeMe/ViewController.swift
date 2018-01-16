@@ -76,12 +76,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
         super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
         
     }
     
@@ -105,17 +107,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         present(imagePicker, animated: true, completion: nil)
     }
     
-    // Function shifts view up or leaves it in default position.
-    @objc func keyboardWillShow(_ notification: Notification) -> Void {
+    // Function shifts view up so bottomText can be seen while using keyboard.
+    @objc func keyboardWillShow(_ notification: Notification) {
         
-        // If bottomText is being edited shift view up to move so keyboard does not cover the text field.
         if bottomText.isFirstResponder {
             self.view.frame.origin.y = getKeyboardHeight(notification) * (-1)
         }
-        // Leave view in original position if topText is being edited.
         else if topText.isFirstResponder {
             self.view.frame.origin.y = 0
         }
+    }
+    
+    // Hide keyboard and reset view to default position
+    @objc func keyboardWillHide(_ notification: Notification) {
+        
+        view.frame.origin.y = 0
     }
     
     // Function gets heighth of keyboard and returns value to keyboardWillShow.
@@ -130,12 +136,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     func subscribeToKeyboardNotifications() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
     
     // Notifies view that keyboard will be dismissed.
     func unsubscribeFromKeyboardNotifications() {
         
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     // MARK: Utility
     
