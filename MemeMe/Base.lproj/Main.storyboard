@@ -42,7 +42,11 @@
                                 <items>
                                     <navigationItem id="n8B-Zq-NKe">
                                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="Bag-82-5Th"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="gwD-Bg-o8r"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="gwD-Bg-o8r">
+                                            <connections>
+                                                <action selector="resetMemeView:" destination="BYZ-38-t0r" id="04m-ED-Enh"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -91,7 +95,9 @@
                         <outlet property="albumButton" destination="jJC-BH-w2o" id="pGh-kP-F2Z"/>
                         <outlet property="bottomText" destination="xnN-oe-Muo" id="Sit-49-7sG"/>
                         <outlet property="cameraButton" destination="pYA-FZ-a9e" id="W6W-dT-UUI"/>
+                        <outlet property="cancelButton" destination="gwD-Bg-o8r" id="fII-vh-xsx"/>
                         <outlet property="originalImage" destination="hev-ez-5rT" id="iF0-ge-mbh"/>
+                        <outlet property="shareButton" destination="Bag-82-5Th" id="FDj-Bf-H2y"/>
                         <outlet property="topText" destination="WiN-fK-CTu" id="UvQ-aU-aXZ"/>
                     </connections>
                 </viewController>

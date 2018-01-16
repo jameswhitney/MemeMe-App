@@ -20,6 +20,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     // Class property for setting text attributes.
     let memeTextAttributes: [String: Any] = [
@@ -101,6 +103,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    // cancelButton resets view and text to default settings.
+    @IBAction func resetMemeView(_ sender: Any) {
+        
+        topText.text = "TOP"
+        bottomText.text = "BOTTOM"
+        originalImage.image = nil
+        
+    }
+    
     
     // Function shifts view up so bottomText can be seen while using keyboard.
     @objc func keyboardWillShow(_ notification: Notification) {
