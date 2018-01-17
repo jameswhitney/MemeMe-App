@@ -23,6 +23,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
+    var memedImage: UIImage!
+    
+    // Struct used to create memed object.
+    struct Meme {
+        
+        var topTextField: String?
+        var bottomTextField: String?
+        var originalImage: UIImage?
+        let memedImage: UIImage!
+    }
+    
+    // Initialize Meme struct to save edited meme state.
+    func save() {
+        
+        let meme = Meme(topTextField: topText.text!, bottomTextField: bottomText.text!, originalImage: originalImage.image!, memedImage: memedImage)
+    }
     
     // Class property for setting text attributes.
     let memeTextAttributes: [String: Any] = [
