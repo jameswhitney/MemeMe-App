@@ -40,6 +40,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         let meme = Meme(topTextField: topText.text!, bottomTextField: bottomText.text!, originalImage: originalImage.image!, memedImage: memedImage)
     }
     
+    // Render text and image and return both as one UIImage.
+    func generateMemedImage() -> UIImage {
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return memedImage
+    }
+    
     // Class property for setting text attributes.
     let memeTextAttributes: [String: Any] = [
         
