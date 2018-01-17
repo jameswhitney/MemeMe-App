@@ -12,7 +12,7 @@ import UIKit
 // MARK: - ViewController: UIController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
-
+    
     // MARK: Outlets
     
     @IBOutlet weak var originalImage: UIImageView!
@@ -22,6 +22,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var bottomText: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
     
     // Class property for setting text attributes.
     let memeTextAttributes: [String: Any] = [
@@ -73,8 +74,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        subscribeToKeyboardNotifications()
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        subscribeToKeyboardNotifications()
+        
+        if originalImage.image == nil {
+            shareButton.isEnabled = false
+        } else {
+            shareButton.isEnabled = true
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
