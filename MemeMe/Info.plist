@@ -4,6 +4,8 @@
 <dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Grant access to use camera?</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save to photo library?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Grant access to photo library?</string>
 	<key>CFBundleDevelopmentRegion</key>

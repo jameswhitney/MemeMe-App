@@ -22,6 +22,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var bottomText: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var toolBar: UIToolbar!
     
     var memedImage: UIImage!
     
@@ -43,13 +45,36 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     // Render text and image and return both as one UIImage.
     func generateMemedImage() -> UIImage {
         
+        navBar.isHidden = true
+        toolBar.isHidden = true
+
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
+
+        navBar.isHidden = false
+        toolBar.isHidden = false
         
         return memedImage
     }
+    
+    @IBAction func shareMeme(_ sender: UIBarButtonItem) {
+        
+        memedImage = generateMemedImage()
+        let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        self.present(activityViewController, animated: true, completion: nil)
+        
+        activityViewController.completionWithItemsHandler = {
+            (activityType: UIActivityType?, completed: Bool, returnedItemds: [Any]?, error: Error?) -> Void in
+            if completed {
+                self.save()
+            }
+        }
+    }
+    
+    
+
     
     // Class property for setting text attributes.
     let memeTextAttributes: [String: Any] = [
