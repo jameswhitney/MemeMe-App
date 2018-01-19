@@ -36,6 +36,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         let memedImage: UIImage!
     }
     
+    // Hide the status bar 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     // Initialize Meme struct to save edited meme state.
     func save() {
         
