@@ -27,6 +27,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     var memedImage: UIImage!
     
+    // Class property for setting text attributes.
+    let memeTextAttributes: [String: Any] = [
+        
+        NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
+        NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
+        NSAttributedStringKey.backgroundColor.rawValue: UIColor.clear,
+        NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSAttributedStringKey.strokeWidth.rawValue : NSNumber(value: -3.0)
+    ]
+    
     // Struct used to create memed object.
     struct Meme {
         
@@ -44,7 +54,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     // Initialize Meme struct to save edited meme state.
     func save() {
         
-        let meme = Meme(topTextField: topText.text!, bottomTextField: bottomText.text!, originalImage: originalImage.image!, memedImage: memedImage)
+        _ = Meme(topTextField: topText.text!, bottomTextField: bottomText.text!, originalImage: originalImage.image!, memedImage: memedImage)
     }
     
     // Render text and image and return both as one UIImage.
@@ -81,15 +91,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
 
     
-    // Class property for setting text attributes.
-    let memeTextAttributes: [String: Any] = [
-        
-        NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
-        NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
-        NSAttributedStringKey.backgroundColor.rawValue: UIColor.clear,
-        NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSAttributedStringKey.strokeWidth.rawValue : NSNumber(value: -3.0)
-    ]
+
     
     // MARK: Life Cycle
     
