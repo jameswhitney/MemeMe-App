@@ -226,6 +226,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
+    // Only enable the shareButton when there is an image in the meme editor
     func hideOrShowShareButton() {
         
         if originalImage.image == nil {
