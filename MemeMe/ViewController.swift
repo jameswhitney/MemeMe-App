@@ -54,7 +54,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     // Initialize Meme struct to save edited meme state.
     func save() {
         
-        _ = Meme(topTextField: topText.text!, bottomTextField: bottomText.text!, originalImage: originalImage.image!, memedImage: memedImage)
+        _ = Meme(topTextField: topText.text!, bottomTextField: bottomText.text!, originalImage: originalImage.image!, memedImage: memedImage) // this implementaion came from the iOS ND forum.
     }
     
     // Render text and image and return both as one UIImage.
