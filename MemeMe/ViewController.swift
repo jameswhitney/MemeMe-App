@@ -33,7 +33,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
         NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
         NSAttributedStringKey.backgroundColor.rawValue: UIColor.clear,
-        NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSAttributedStringKey.font.rawValue: UIFont(name: "Impact", size: 40)!,
         NSAttributedStringKey.strokeWidth.rawValue : NSNumber(value: -3.0)
     ]
     
@@ -107,6 +107,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         bottomText.defaultTextAttributes = memeTextAttributes
         self.bottomText.textAlignment = .center
         bottomText.text = "BOTTOM"
+        
         
         // Change view background color to black.
         view.backgroundColor = UIColor.black
