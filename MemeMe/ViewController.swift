@@ -89,10 +89,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     
-
-    
-
-    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
@@ -123,7 +119,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
-    // Once return is selected, exit text field editing.
+    // Once return is selected exit text field editing.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -136,11 +132,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
         
-        if originalImage.image == nil {
-            shareButton.isEnabled = false
-        } else {
-            shareButton.isEnabled = true
-        }
+        hideOrShowShareButton()
         
     }
     
@@ -178,11 +170,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         bottomText.text = "BOTTOM"
         originalImage.image = nil
         
-        if originalImage.image == nil {
-            shareButton.isEnabled = false
-        } else {
-            shareButton.isEnabled = true
-        }
+        hideOrShowShareButton()
         
     }
     
@@ -226,7 +214,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
-    // MARK: Utility
+    // MARK: Utilities
     
     // Function takes user selection from a dictionary of images and displays selected image as originalImage.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -234,6 +222,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             originalImage.image = image
+        }
+    }
+    
+    func hideOrShowShareButton() {
+        
+        if originalImage.image == nil {
+            shareButton.isEnabled = false
+        } else {
+            shareButton.isEnabled = true
         }
     }
     
