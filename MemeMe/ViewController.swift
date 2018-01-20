@@ -178,6 +178,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         bottomText.text = "BOTTOM"
         originalImage.image = nil
         
+        if originalImage.image == nil {
+            shareButton.isEnabled = false
+        } else {
+            shareButton.isEnabled = true
+        }
+        
     }
     
     
@@ -185,7 +191,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @objc func keyboardWillShow(_ notification: Notification) {
         
         if bottomText.isFirstResponder {
-            self.view.frame.origin.y = getKeyboardHeight(notification) * (-1)
+            self.view.frame.origin.y = 0 - getKeyboardHeight(notification)
         }
         else if topText.isFirstResponder {
             self.view.frame.origin.y = 0
