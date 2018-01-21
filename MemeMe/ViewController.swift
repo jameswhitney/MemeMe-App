@@ -149,24 +149,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
     }
     
-    // MARK: Actions
-    
-    // When albumButton is selected present user with photo album picker.
-    @IBAction func pickAnImageFromAlbum(_ sender: Any) {
+    func pickAnImageFrom(sourceType: UIImagePickerControllerSourceType) { // This function decides decides where image for meme is selected based on sourceType.
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        imagePicker.sourceType = sourceType
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
-    // When cameraButton is selected, open camera app so user can take a photo.
-    @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+    // MARK: Actions
+
+    @IBAction func imageSourceFromCamera(_ sender: Any) {
+        pickAnImageFrom(sourceType: .camera)    // Camera button launches camera.
+    }
+    
+    @IBAction func imageSourceFromPhotoLibrary(_ sender: Any) {
+        pickAnImageFrom(sourceType: .photoLibrary)  // Album button launches Photo Library.
     }
     
     // cancelButton resets view and text to default settings.
