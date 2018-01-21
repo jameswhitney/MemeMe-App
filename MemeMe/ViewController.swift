@@ -109,6 +109,26 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
     }
     
+    // Check if camera source is available. If not disable camera button.
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        subscribeToKeyboardNotifications()
+        
+        hideOrShowShareButton()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+        
+    }
+    
+    // MARK: Meme Editor
+    
     func configure(textField: UITextField, withText text: String) {
         
         textField.delegate = self
@@ -130,26 +150,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         textField.resignFirstResponder()
         return true
     }
+
     
-    // Check if camera source is available. If not disable camera button.
-    override func viewWillAppear(_ animated: Bool) {
-        
-        super.viewWillAppear(animated)
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        subscribeToKeyboardNotifications()
-        
-        hideOrShowShareButton()
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        super.viewWillDisappear(animated)
-        unsubscribeFromKeyboardNotifications()
-        
-    }
-    
-    func pickAnImageFrom(sourceType: UIImagePickerControllerSourceType) { // This function decides decides where image for meme is selected based on sourceType.
+    // This function decides decides where image for meme is selected based on sourceType.
+    func pickAnImageFrom(sourceType: UIImagePickerControllerSourceType) {
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -158,13 +162,35 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     // MARK: Actions
-
+    
+    // Camera button launches camera.
     @IBAction func imageSourceFromCamera(_ sender: Any) {
-        pickAnImageFrom(sourceType: .camera)    // Camera button launches camera.
+        pickAnImageFrom(sourceType: .camera)
     }
     
+    // Album button launches Photo Library.
     @IBAction func imageSourceFromPhotoLibrary(_ sender: Any) {
-        pickAnImageFrom(sourceType: .photoLibrary)  // Album button launches Photo Library.
+        pickAnImageFrom(sourceType: .photoLibrary)
+    }
+    
+    
+    
+    // MARK: Utilities
+    
+    // Function takes user selection from a dictionary of images and displays selected image as originalImage.
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        dismiss(animated: true, completion: nil)
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            originalImage.image = image
+        }
+    }
+    
+    // Only enable the shareButton when there is an image in the meme editor
+    func hideOrShowShareButton() {
+        
+        shareButton.isEnabled = originalImage.image != nil
+        
     }
     
     // cancelButton resets view and text to default settings.
@@ -177,7 +203,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         hideOrShowShareButton()
         
     }
-    
     
     // Function shifts view up so bottomText can be seen while using keyboard.
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -214,26 +239,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     // Notifies view that keyboard will be dismissed.
     func unsubscribeFromKeyboardNotifications() {
         
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
-    }
-    
-    // MARK: Utilities
-    
-    // Function takes user selection from a dictionary of images and displays selected image as originalImage.
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        dismiss(animated: true, completion: nil)
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            originalImage.image = image
-        }
-    }
-    
-    // Only enable the shareButton when there is an image in the meme editor
-    func hideOrShowShareButton() {
-        
-        shareButton.isEnabled = originalImage.image != nil
-        
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
 
