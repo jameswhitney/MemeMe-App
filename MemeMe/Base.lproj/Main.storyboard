@@ -75,7 +75,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="LJR-6m-yon" firstAttribute="top" secondItem="xnN-oe-Muo" secondAttribute="bottom" constant="29" id="DfD-j7-jkD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hev-ez-5rT" secondAttribute="trailing" id="Dwp-Wk-68p"/>

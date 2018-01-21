@@ -104,23 +104,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Assign textField outlets to utilize UITextFieldDelegate.
-        self.topText.delegate = self
-        self.bottomText.delegate = self
+        configure(textField: topText, withText: "TOP")
+        configure(textField: bottomText, withText: "BOTTOM")
         
-        // Create default text for topText using memeTextAttributes. Center text and set text to TOP.
-        topText.defaultTextAttributes = memeTextAttributes
-        self.topText.textAlignment = .center
-        topText.text = "TOP"
+    }
+    
+    func configure(textField: UITextField, withText text: String) {
         
-        // Create default text for bottomText using memeTextAttributes. Center text and set text to BOTTOM.
-        bottomText.defaultTextAttributes = memeTextAttributes
-        self.bottomText.textAlignment = .center
-        bottomText.text = "BOTTOM"
-        
-        
-        // Change view background color to black.
-        view.backgroundColor = UIColor.black
+        textField.delegate = self
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.text = text
     }
 
     
