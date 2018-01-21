@@ -60,18 +60,28 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     // Render text and image and return both as one UIImage.
     func generateMemedImage() -> UIImage {
         
-        navBar.isHidden = true
-        toolBar.isHidden = true
+        hideTopAndBottomBars(true)
 
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
-        navBar.isHidden = false
-        toolBar.isHidden = false
+        hideTopAndBottomBars(false)
         
         return memedImage
+    }
+    
+    func hideTopAndBottomBars(_ hide: Bool) {
+        
+        if  hide != true {
+            navBar.isHidden = false
+            toolBar.isHidden = false
+        } else {
+            navBar.isHidden = true
+            toolBar.isHidden = true
+        }
+        
     }
     
     @IBAction func shareMeme(_ sender: UIBarButtonItem) {
@@ -112,6 +122,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         // Change view background color to black.
         view.backgroundColor = UIColor.black
     }
+
     
     // Clear default text to empty string when text editing begins
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -180,7 +191,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @objc func keyboardWillShow(_ notification: Notification) {
         
         if bottomText.isFirstResponder {
-            self.view.frame.origin.y = 0 - getKeyboardHeight(notification)
+            self.view.frame.origin.y = -getKeyboardHeight(notification)
         }
         else if topText.isFirstResponder {
             self.view.frame.origin.y = 0
@@ -229,11 +240,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     // Only enable the shareButton when there is an image in the meme editor
     func hideOrShowShareButton() {
         
-        if originalImage.image == nil {
-            shareButton.isEnabled = false
-        } else {
-            shareButton.isEnabled = true
-        }
+        shareButton.isEnabled = originalImage.image != nil
+        
     }
     
 
