@@ -37,24 +37,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         NSAttributedStringKey.strokeWidth.rawValue : NSNumber(value: -3.0)
     ]
     
-    // Struct used to create memed object.
-    struct Meme {
-        
-        var topTextField: String?
-        var bottomTextField: String?
-        var originalImage: UIImage?
-        let memedImage: UIImage!
-    }
-    
     // Hide the status bar
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
-    // Initialize Meme struct to save edited meme state.
+    // Initialize Meme class struct to save edited meme state.
+    // The implementaion for this function came from the iOS ND forum.
     func save() {
         
-        _ = Meme(topTextField: topText.text!, bottomTextField: bottomText.text!, originalImage: originalImage.image!, memedImage: memedImage) // this implementaion came from the iOS ND forum.
+        _ = MemeProperties.Meme(topTextField: topText.text!, bottomTextField: bottomText.text!, originalImage: originalImage.image!, memedImage: memedImage)
     }
     
     // Render text and image and return both as one UIImage.
