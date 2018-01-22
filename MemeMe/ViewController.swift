@@ -66,7 +66,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     func hideTopAndBottomBars(_ hide: Bool) {
         
-        if  hide != true {
+        if  !hide {
             navBar.isHidden = false
             toolBar.isHidden = false
         } else {
@@ -199,12 +199,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     // Function shifts view up so bottomText can be seen while using keyboard.
     @objc func keyboardWillShow(_ notification: Notification) {
         
-        if bottomText.isFirstResponder {
-            self.view.frame.origin.y = -getKeyboardHeight(notification)
-        }
-        else if topText.isFirstResponder {
-            self.view.frame.origin.y = 0
-        }
+        self.view.frame.origin.y = bottomText.isFirstResponder ? -getKeyboardHeight(notification) : 0
     }
     
     // Hide keyboard and reset view to default position
