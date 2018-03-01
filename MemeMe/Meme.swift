@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-class MemeProperties {
-// Struct used to create memed object.
-    struct Meme {
-    
-        var topTextField: String?
-        var bottomTextField: String?
-        var originalImage: UIImage?
-        let memedImage: UIImage!
-    }
+// MARK: -Meme struct
+
+struct Meme {
+
+    var topTextField: String?
+    var bottomTextField: String?
+    var originalImage: UIImage?
+    let memedImage: UIImage!
 }
+
