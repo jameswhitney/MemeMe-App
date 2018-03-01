@@ -15,7 +15,7 @@ Once you have git installed, create a folder where you want the project to live,
 
 ## Built With
 
-Xcode
+Xcode 9.2
 
 ## Acknowledgments
 
