@@ -46,7 +46,7 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     // The implementaion for this function came from the iOS ND forum.
     func save() {
         
-        _ = MemeProperties.Meme(topTextField: topText.text!, bottomTextField: bottomText.text!, originalImage: originalImage.image!, memedImage: memedImage)
+        _ = Meme(topTextField: topText.text!, bottomTextField: bottomText.text!, originalImage: originalImage.image!, memedImage: memedImage)
     }
     
     // Render text and image and return both as one UIImage.

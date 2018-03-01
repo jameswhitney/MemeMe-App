@@ -12,7 +12,6 @@ import UIKit
 // MARK: -Meme struct
 
 struct Meme {
-
     var topTextField: String?
     var bottomTextField: String?
     var originalImage: UIImage?
